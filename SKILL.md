@@ -54,7 +54,9 @@ before including any claim in the output.
 
 - Only describe what can be inferred from actual code, config, and git history
 - Never invent undocumented behavior or hypothetical scenarios
-- All file paths must point to files that exist
+- All file paths must point to files that exist — only reference paths verified via
+  `ls`, `read`, or `find` during exploration. Never use hypothetical or illustrative
+  paths as examples.
 - All version numbers must come from dependency files, not from memory
 - All commands must be real — extracted from Makefile, package.json, CI config — verified
   to actually exist, not copied from README without checking
@@ -224,8 +226,10 @@ This checks: file path references exist, Mermaid diagrams have valid structure,
 document size fits the depth-level target, all required sections are present, USER
 NOTES marker exists, and commands in the Key Commands table exist in the build system.
 
-Fix any errors reported by the script, then re-run until it passes. Warnings should
-be reviewed but may be acceptable (e.g., size slightly outside target range).
+Fix any errors reported by the script, then re-run until it passes. **Once validation
+passes, STOP. Do not rewrite the file to expand or improve content — the loop is for
+fixing errors only.** Warnings should be reviewed but may be acceptable (e.g., size
+slightly outside target range).
 
 After the script passes, manually verify these checks that can't be automated:
 
