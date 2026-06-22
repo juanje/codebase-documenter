@@ -1,0 +1,31 @@
+{
+  "defaultMode": "deny",
+  "permissions": {
+    "tools": {
+      "read": { "default": "allow" },
+      "write": {
+        "default": "deny",
+        "paths": { "allow": ["docs/CODEBASE.md"] }
+      },
+      "edit": {
+        "default": "deny",
+        "paths": { "allow": ["docs/CODEBASE.md"] }
+      },
+      "bash": {
+        "default": "deny",
+        "allow": [
+          "bash */scripts/extract_project_facts.sh *",
+          "bash */scripts/detect_staleness.sh *",
+          "bash */scripts/validate_output.sh *",
+          "git show *", "git log *", "git rev-list *", "git diff *", "git ls-files *",
+          "find *", "grep *", "ls *", "cat *", "wc *", "head *", "tail *",
+          "mkdir -p docs"
+        ],
+        "deny": ["rm *", "git push *", "git commit *", "curl *", "wget *", "pip *", "npm *"]
+      },
+      "grep": "allow",
+      "find": "allow",
+      "ls": "allow"
+    }
+  }
+}
